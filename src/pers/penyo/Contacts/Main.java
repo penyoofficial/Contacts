@@ -10,11 +10,14 @@ package pers.penyo.Contacts;
  * 除了“更改”功能，其它交互逻辑上尽量做到与现代设计同步。
  * 
  * @author Penyo
-*/
+ */
 public class Main {
+    /**
+     * 统一的序列化校验码。
+     */
     public static final long USVUID = 0;
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         new GUI();
     }
 }

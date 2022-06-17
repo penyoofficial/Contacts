@@ -20,7 +20,8 @@ import pers.penyo.Contacts.Items.Tel;
  * ）表达，并集成了一些操作方法。该类在初始化时，会自动调用 {@link #initialize()} 方法以尝试读取本地的通讯录文件。
  * 
  * <p>
- * 我们已按照程序的实际需要重写了 {@link Collection} 接口的部分方法，你可以直接调用它们。
+ * 我们已按照程序的实际需要重写了 {@link Collection} 接口的部分方法。
+ * 你可以直接调用它们，尽管预期可能会和你想的有点不一样——全部支持链式调用！
  * 
  * @author Penyo
  * @see Person
@@ -100,7 +101,7 @@ public class People {
      */
     public People remove(String name) {
         for (Person p : people)
-            if (p.getName().equals(name)){
+            if (p.getName().equals(name)) {
                 people.remove(p);
                 break;
             }

@@ -23,7 +23,7 @@ import pers.penyo.Contacts.Items.Person;
 import pers.penyo.Contacts.Items.Tel;
 
 /**
- * {@code GUI} 类是友好操作 {@link People} 类的图形用户界面定义。
+ * {@code GUI} 类定义了友好操作 {@link People} 类的图形用户界面。
  * 
  * @author Penyo
  * @see People

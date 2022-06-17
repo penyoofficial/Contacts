@@ -28,108 +28,194 @@ public class Person implements Serializable {
     private String name;
 
     /**
-     * 电话号码的集合。
+     * 电话号码包装类的集合。
      */
     private ArrayList<Tel> tel = new ArrayList<>();
 
     /**
-     * 电子邮箱地址的集合。
+     * 电子邮箱地址包装类的集合。
      */
     private ArrayList<Email> email = new ArrayList<>();
 
+    /**
+     * 该构造器用于接受姓名为参数以实例化。
+     * 
+     * @param name 姓名。
+     */
     public Person(String name) {
         this.name = name;
     }
 
-    /***/
+    /**
+     * 该构造器用于接受姓名和电话号码为参数以实例化。
+     * 
+     * @param name 姓名。
+     * @param tel  电话号码。
+     */
     public Person(String name, String tel) {
         this.name = name;
         this.tel.add(new Tel(tel));
     }
 
-    /***/
+    /**
+     * 该构造器用于接受姓名和 {@link Tel} 对象为参数以实例化。
+     * 
+     * @param name 姓名。
+     * @param tel  {@link Tel} 对象。
+     */
     public Person(String name, Tel tel) {
         this.name = name;
         this.tel.add(tel);
     }
 
-    /***/
+    /**
+     * 该构造器用于接受姓名和 {@link Email} 对象为参数以实例化。
+     * 
+     * @param name  姓名。
+     * @param email {@link Email} 对象。
+     */
     public Person(String name, Email email) {
         this.name = name;
         this.email.add(email);
     }
 
-    /***/
+    /**
+     * 该构造器用于接受姓名、电话号码和电子邮箱地址为参数以实例化。
+     * 
+     * @param name  姓名。
+     * @param tel   电话号码。
+     * @param email 电子邮箱地址。
+     */
     public Person(String name, String tel, String email) {
         this.name = name;
         this.tel.add(new Tel(tel));
         this.email.add(new Email(email));
     }
 
-    /***/
+    /**
+     * 该构造器用于接受姓名、电话号码和 {@link Email} 对象为参数以实例化。
+     * 
+     * @param name  姓名。
+     * @param tel   电话号码。
+     * @param email {@link Email} 对象。
+     */
     public Person(String name, String tel, Email email) {
         this.name = name;
         this.tel.add(new Tel(tel));
         this.email.add(email);
     }
 
-    /***/
+    /**
+     * 该构造器用于接受姓名、 {@link Tel} 对象和电子邮箱地址为参数以实例化。
+     * 
+     * @param name  姓名。
+     * @param tel   {@link Tel} 对象。
+     * @param email 电子邮箱地址。
+     */
     public Person(String name, Tel tel, String email) {
         this.name = name;
         this.tel.add(tel);
         this.email.add(new Email(email));
     }
 
-    /***/
+    /**
+     * 该构造器用于接受姓名、 {@link Tel} 对象和 {@link Email} 对象为参数以实例化。
+     * 
+     * @param name  姓名。
+     * @param tel   {@link Tel} 对象。
+     * @param email {@link Email} 对象。
+     */
     public Person(String name, Tel tel, Email email) {
         this.name = name;
         this.tel.add(tel);
         this.email.add(email);
     }
 
+    /**
+     * 该方法用于获取姓名。
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * 该方法用于设置姓名。
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * 该方法用于获取电话号码包装类的集合。
+     * 
+     * @return 电话号码包装类的集合。
+     */
     public ArrayList<Tel> getTel() {
         return tel;
     }
 
+    /**
+     * 该方法用于设置电话号码包装类的集合。
+     * 
+     * @param tel 电话号码包装类的集合。
+     */
     public void setTel(ArrayList<Tel> tel) {
         this.tel = tel;
     }
 
+    /**
+     * 该方法用于获取电子邮箱地址包装类的集合。
+     * 
+     * @return 电子邮箱地址包装类的集合。
+     */
     public ArrayList<Email> getEmail() {
         return email;
     }
 
+    /**
+     * 该方法用于设置电子邮箱地址包装类的集合。
+     * 
+     * @param email 电子邮箱地址包装类的集合。
+     */
     public void setEmail(ArrayList<Email> email) {
         this.email = email;
     }
 
-    /***/
+    /**
+     * 该方法用于向电话号码包装类的集合追加元素。
+     * 
+     * @param tel 电话号码。
+     */
     public Person addTel(String tel) {
         this.tel.add(new Tel(tel));
         return this;
     }
 
-    /***/
+    /**
+     * 该方法用于向电话号码包装类的集合追加元素。
+     * 
+     * @param tel {@link Tel} 对象。
+     */
     public Person addTel(Tel tel) {
         this.tel.add(tel);
         return this;
     }
 
-    /***/
+    /**
+     * 该方法用于向电子邮箱地址包装类的集合追加元素。
+     * 
+     * @param email 电子邮箱地址。
+     */
     public Person addEmail(String email) {
         this.email.add(new Email(email));
         return this;
     }
 
-    /***/
+    /**
+     * 该方法用于向电子邮箱地址包装类的集合追加元素。
+     * 
+     * @param email {@link Email} 对象。
+     */
     public Person addEmail(Email email) {
         this.email.add(email);
         return this;

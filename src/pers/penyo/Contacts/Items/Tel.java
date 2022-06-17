@@ -49,18 +49,38 @@ public class Tel implements Serializable {
         this.remark = remark;
     }
 
+    /**
+     * 该方法用于获取电话号码。
+     * 
+     * @return 电话号码。
+     */
     public String getTel() {
         return tel;
     }
 
+    /**
+     * 该方法用于设置电话号码。
+     * 
+     * @param tel 电话号码。
+     */
     public void setTel(String tel) {
         this.tel = tel;
     }
 
+    /**
+     * 该方法用于获取电话号码所对应的注释。
+     * 
+     * @return 电话号码所对应的注释。
+     */
     public String getRemark() {
         return remark;
     }
 
+    /**
+     * 该方法用于设置电话号码所对应的注释。
+     * 
+     * @param remark 电话号码所对应的注释。
+     */
     public void setRemark(String remark) {
         this.remark = remark;
     }

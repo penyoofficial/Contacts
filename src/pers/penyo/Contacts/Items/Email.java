@@ -49,18 +49,38 @@ public class Email implements Serializable {
         this.remark = remark;
     }
 
+    /**
+     * 该方法用于获取电子邮箱地址。
+     * 
+     * @return 电子邮箱地址。
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * 该方法用于设置电子邮箱地址。
+     * 
+     * @param email 电子邮箱地址。
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     * 该方法用于获取电子邮箱地址所对应的注释。
+     * 
+     * @return 电子邮箱地址所对应的注释。
+     */
     public String getRemark() {
         return remark;
     }
 
+    /**
+     * 该方法用于设置电子邮箱地址所对应的注释。
+     * 
+     * @param remark 电子邮箱地址所对应的注释。
+     */
     public void setRemark(String remark) {
         this.remark = remark;
     }
