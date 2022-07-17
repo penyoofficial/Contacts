@@ -3,10 +3,9 @@ package com.penyo.contacts;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.text.Collator;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Locale;
 import java.util.TreeSet;
@@ -30,13 +29,13 @@ public class People {
     /**
      * 通讯录数据文件在本地的位置。
      */
-    private File contacts = new File("com/penyo/contacts/Contacts.oos");
+    private File contacts = new File("com/penyo/contacts/Contacts.vcf");
 
     /**
      * {@link Person} 类的集合（本质是按照姓名顺序排序的 {@link TreeSet} ）。
      */
     private TreeSet<Person> people = new TreeSet<>((p1, p2) -> {
-        return Collator.getInstance(Locale.CHINA).compare(p1.getName(), p2.getName());
+        return Collator.getInstance(Locale.PRC).compare(p1.getName(), p2.getName());
     });
 
     /**
@@ -49,31 +48,33 @@ public class People {
             e.printStackTrace();
         }
         initialize();
+        save();
     }
 
     /**
-     * 该方法用于从本地读取 {@code Contacts.oos} 文件，并载入到集合中。
+     * 该方法用于从本地读取 {@code Contacts.vcf} 文件，并载入到集合中。
      * 如果本地文件不可用，则集合默认为空。
      * 
      * @see #save()
      */
-    @SuppressWarnings("unchecked")
     private void initialize() {
-        try (ObjectInputStream contacts = new ObjectInputStream(new FileInputStream(this.contacts))) {
-            people.addAll((ArrayList<Person>) contacts.readObject());
+        try (InputStreamReader contacts = new InputStreamReader(new FileInputStream(this.contacts), "UTF-8")) {
+            char[] c = new char[1024 * 1024];
+            contacts.read(c);
+            people.addAll(VCardAdapter.toCollection(new String(c)));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     /**
-     * 该方法用于从集合中读取数据，并向本地写入 {@code Contacts.oos} 文件。
+     * 该方法用于从集合中读取数据，并向本地写入 {@code Contacts.vcf} 文件。
      * 
      * @see #initialize()
      */
     private void save() {
-        try (ObjectOutputStream contacts = new ObjectOutputStream(new FileOutputStream(this.contacts))) {
-            contacts.writeObject(new ArrayList<>(people));
+        try (OutputStreamWriter contacts = new OutputStreamWriter(new FileOutputStream(this.contacts), "UTF-8")) {
+            contacts.write(VCardAdapter.toVcardString(people));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -121,25 +122,14 @@ public class People {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        int target = 0;
         for (Person p : people) {
             str.append(p.getName() + "\n");
 
-            target = 0;
-            for (Tel t : p.getTel()) {
-                str.append(t + "\t");
-                target++;
-            }
-            if (target != 0)
-                str.append("\n");
+            for (Tel t : p.getTel())
+                str.append(t + "\n");
 
-            target = 0;
-            for (Email e : p.getEmail()) {
-                str.append(e + "\t");
-                target++;
-            }
-            if (target != 0)
-                str.append("\n");
+            for (Email e : p.getEmail())
+                str.append(e + "\n");
 
             str.append("\n");
         }

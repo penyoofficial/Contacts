@@ -35,6 +35,8 @@ public class Tel implements Serializable {
      * @param tel 电话号码。
      */
     public Tel(String tel) {
+        if (tel.matches("1[3-9]\\d{9}"))
+            tel = tel.substring(0, 3) + " " + tel.substring(3, 7) + " " + tel.substring(7);
         this.tel = tel;
     }
 
@@ -45,6 +47,8 @@ public class Tel implements Serializable {
      * @param remark 电话号码所对应的注释。
      */
     public Tel(String tel, String remark) {
+        if (tel.matches("1[3-9]\\d{9}"))
+            tel = tel.substring(0, 3) + " " + tel.substring(3, 7) + " " + tel.substring(7);
         this.tel = tel;
         this.remark = remark;
     }

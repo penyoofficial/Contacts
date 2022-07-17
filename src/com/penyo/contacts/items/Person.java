@@ -1,7 +1,7 @@
 package com.penyo.contacts.items;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.TreeSet;
 
 /**
  * {@code Person} 类是对个体的抽象表达。
@@ -30,12 +30,19 @@ public class Person implements Serializable {
     /**
      * 电话号码包装类的集合。
      */
-    private ArrayList<Tel> tel = new ArrayList<>();
+    private TreeSet<Tel> tel = new TreeSet<>((t1, t2) -> {
+        return (t1.getTel()).compareTo(t2.getTel());
+    });
 
     /**
      * 电子邮箱地址包装类的集合。
      */
-    private ArrayList<Email> email = new ArrayList<>();
+    private TreeSet<Email> email = new TreeSet<>((e1, e2) -> {
+        return (e1.getEmail()).compareTo(e2.getEmail());
+    });
+
+    public Person() {
+    }
 
     /**
      * 该构造器用于接受姓名为参数以实例化。
@@ -150,7 +157,7 @@ public class Person implements Serializable {
      * 
      * @return 电话号码包装类的集合。
      */
-    public ArrayList<Tel> getTel() {
+    public TreeSet<Tel> getTel() {
         return tel;
     }
 
@@ -159,7 +166,7 @@ public class Person implements Serializable {
      * 
      * @param tel 电话号码包装类的集合。
      */
-    public void setTel(ArrayList<Tel> tel) {
+    public void setTel(TreeSet<Tel> tel) {
         this.tel = tel;
     }
 
@@ -168,7 +175,7 @@ public class Person implements Serializable {
      * 
      * @return 电子邮箱地址包装类的集合。
      */
-    public ArrayList<Email> getEmail() {
+    public TreeSet<Email> getEmail() {
         return email;
     }
 
@@ -177,7 +184,7 @@ public class Person implements Serializable {
      * 
      * @param email 电子邮箱地址包装类的集合。
      */
-    public void setEmail(ArrayList<Email> email) {
+    public void setEmail(TreeSet<Email> email) {
         this.email = email;
     }
 
@@ -219,16 +226,6 @@ public class Person implements Serializable {
     public Person addEmail(Email email) {
         this.email.add(email);
         return this;
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((email == null) ? 0 : email.hashCode());
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((tel == null) ? 0 : tel.hashCode());
-        return result;
     }
 
     @Override
